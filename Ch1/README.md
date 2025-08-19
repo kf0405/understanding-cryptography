@@ -74,7 +74,7 @@
 
 16. 
     1. $e_{k2}\equiv a_2*(a_1*x_1 + b_1) + b2 \mod 26$. X here is an encrypted x itself. The keyspace of one function doesn't depend on the other, but only on its a, b and m. Considering the result of the affine cipher is always another letter in the alphabet, x will just be a valid letter for $e_{k2}$, so there could easily be a V$e_{k3}\equiv a_3*x + b3 \mod 26$.
-    2. $a_3=33$, $b_3\eq62$.
+    2. $a_3=33$, $b_3=62$.
     3. With $e_{k3}$ we get 9 or I, with $e_{k1}$ and then $e_{k2}$ we also get 9 or I.
     4. The effective key space is not altered, as we still use the same m, and m is the value that matters for obtaining the keyspace.  
 
