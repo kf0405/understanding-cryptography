@@ -59,11 +59,11 @@
     1. Euler's phi for 4, 5, 9, 26: 2, 4, 6, 12. So, if a number is prime, its Euler phi function will result in it - 1. If it is not prime and is a perfect square, it will be itself minus its square root. If it is a coprime, it will be the multiplication of the phi of its divisors.  
 
 13.  
-    1. We decrypt it by using the decryption expression for affine ciphers, $d\eq x \equiv a^{-1^}(y-b)mod26$ with a as 7 and b as 22. The inverse of a for Z26 is 15. The rest will be solved with the code in 1-13.py. 
+    1. We decrypt it by using the decryption expression for affine ciphers, $d= x \equiv a^{-1}*(y-b)\mod 26$ with a as 7 and b as 22. The inverse of a for Z26 is 15. The rest will be solved with the code in 1-13.py. 
     2. The result is a quote from Alice in Wonderland by Lewis Carrol.
 
 14.  
-    1. $d\eq x \equiv a^{-1^}*(y-b)mod29$ and $e\eq x \equiv (a*x+b)mod29$. As m is prime, all numbers from a to 28 are possible a's.
+    1. $d= x \equiv a^{-1}*(y-b)mod29$ and $e= x \equiv (a*x+b)mod29$. As m is prime, all numbers from a to 28 are possible a's.
     2. A key in the affine cipher is the pair (a,b). Where b is the Euler phi of a. For a = 29, we should have b = 28. 29 * 28 = 812 possible keys
     3. The letters correspond to the values $26, 20, 29, 22, 29$. Using the decrypt function from 1, considering the inverse of 17 is 23 for 30,  we can obtain the result of: Frodo.
     4. From the shire  
@@ -73,8 +73,8 @@
     With the two pairs we will only have to find the values of a and b, which should be trivial.  
 
 16. 
-    1. $e_{k2}\equiv a_2*(a_1*x_1 + b_1) + b2 \mod 26$. X here is an encrypted x itself. The keyspace of one function doesn't depend on the other, but only on its a, b and m. Considering the result of the affine cipher is always another letter in the alphabet, x will just be a valid letter for $e_{k2}$, so there could easily be a $e_{k3}\equiv a_3*x + b3 \mod 26$.
-    2. $a_3\eq33$, $b_3\eq7$.
+    1. $e_{k2}\equiv a_2*(a_1*x_1 + b_1) + b2 \mod 26$. X here is an encrypted x itself. The keyspace of one function doesn't depend on the other, but only on its a, b and m. Considering the result of the affine cipher is always another letter in the alphabet, x will just be a valid letter for $e_{k2}$, so there could easily be a V$e_{k3}\equiv a_3*x + b3 \mod 26$.
+    2. $a_3=33$, $b_3\eq62$.
     3. With $e_{k3}$ we get 9 or I, with $e_{k1}$ and then $e_{k2}$ we also get 9 or I.
     4. The effective key space is not altered, as we still use the same m, and m is the value that matters for obtaining the keyspace.  
 
