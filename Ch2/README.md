@@ -63,12 +63,29 @@
     4. -
 
 13. 
-    1. First, we convert WPI and the ciphered message to binary. Now, we can obtain the form encrypted WPI will have in the binary by XOR'ing it with the first 3 digits from the cipher code (as they will have the same length). With that we get our IV, the first 6 bits, as our m is 6. The result is 111111 (We consider the IV starts with W).
+    1. First, we convert WPI and the ciphered message to binary. Now, we can obtain the form encrypted WPI will have in the keystream by XOR'ing it with the first 3 letters from the cipher code (as they will have the same length). With that we get our IV, the first 6 bits, as our m is 6. The result is 111111 (We consider the IV starts with W).
     2. 1 + x5 + x6
     3. WIPWOMBAT
     4. Australia
     5. Known plaintext, as we knew the WPI header was a part of the result.
 
 14. 
-    1.
+    1.  With the known plaintext, the attacker can make a system of 3 equations with the equations for all the $z_{i}$ up to 3. With this system, we can subtract z3 for z2, and that way we will find a or b. With one of them, we can find the other. At the end, the only remaining element will be the seed, so we can just replace a and b on $z_{1}$ to find the results. a = 15 b = 164 $z_{0}$ = 55.
+    2. This is a known plaintext attack. Knowing enough pairs of plaintext and ciphertext, and also the LCG (linear congruing generator).  
 
+15.  
+    1. We use the same logic as the problem before, but this time we will have to find a, b and c. a = 225, b = 246, c = 174.
+
+16. 
+    1. The Salsa20 initial state Matrix would therefore feature all zeros for the exception of the constant bits, that should be "expand 32-byte k"  
+    [ 0x61707865, 0x00000000, 0x00000000, 0x00000000 ]  
+    [ 0x00000000, 0x3320646e, 0x00000000, 0x00000000 ]  
+    [ 0x00000000, 0x00000000, 0x79622d32, 0x00000000 ]  
+    [ 0x00000000, 0x00000000, 0x00000000, 0x6b206574 ]
+
+17. 
+    1. a = 0x10000001, b = 0x80808808, c = 0x01010110, d = 0x01000110
+
+18.  
+    1. At the beginning, only one bit would be 1, the bit 110. Using the code on 2-18.py, we get the first 70 warm-up bits:  
+    [1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0].
