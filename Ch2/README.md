@@ -19,3 +19,56 @@
 
 6.  
     1. Two major drawbacks: requires a different key bit for every bit of the original message and the key should only be known to legitimate communication parties, so we can't send it through the Internet, we would need some other form of transportation for the key.
+
+7.  
+    1. 1 1 0
+    2. 0 0 1
+    3. One is the inverse of the other  
+
+8. 
+    1. One could try to detect the period by trying the same plaintext many times, or plaintexts with different sizes to see what changes. Trying to guess the result of XORs with specific, common ASCII characters could also be done(like the letter 'A'). As the key space is small, brute force is also an option. 
+
+9.  
+    1. 0 0 0 0 1 0 1 1 1 1 0 0 0 1 0 0
+
+10.  
+    1. Max length = 15 bits ($2^{m}-1$). 1 and 2 are primitive, so they generate 15 bit sequences. 3 is not. Calculating all sequences for one polynomial should be enough:  
+    0001 → 000111010011100 | 0001...
+    0010 → 001110100111000  
+    0011 → 001110100111000  
+    0100 → 011101001110000  
+    0101 → 011010011101000  
+    0110 → 011001111010001  
+    0111 → 011110100111000  
+    1000 → 111010011100010  
+    1001 → 110100111000101  
+    1010 → 101001110001011  
+    1011 → 101110100111000  
+    1100 → 110100111000101  
+    1101 → 111010011100010  
+    1110 → 111001111010001  
+    1111 → 111110101001110  
+    3. As 3 is non primitive it should have a shorter sequence:  
+    0001 → 0001100011(length 5)
+
+11. 
+    1. In the worst case, we need 2 times the length, as we need to have two full sequences to determine the key through a system with 2 equations of ciphertext, plaintext and key.
+    2. Keystream bit = ciphertext bit XOR plaintext bit. The 2 equations would be $K_{256}=Y_{256} \oplus X_{256}$ and $K_{512}=Y_{512} \oplus X_{512}$, with the first one being the first 256 bits and the second one the second sequence of 256 bits.
+    3. The key is the sequence of 256 bits of maximum length. The initial elements should not be the key, as LSRFs are linear, so attackers can reconstruct the initial state and it can be recovered from the keystream.
+
+12. 
+    1. The degree is 13.
+    2. 00101110010111
+    3. 1 + x + x3 + x4 + x7 + x10 + x11 + x13
+    4. -
+
+13. 
+    1. First, we convert WPI and the ciphered message to binary. Now, we can obtain the form encrypted WPI will have in the binary by XOR'ing it with the first 3 digits from the cipher code (as they will have the same length). With that we get our IV, the first 6 bits, as our m is 6. The result is 111111 (We consider the IV starts with W).
+    2. 1 + x5 + x6
+    3. WIPWOMBAT
+    4. Australia
+    5. Known plaintext, as we knew the WPI header was a part of the result.
+
+14. 
+    1.
+
